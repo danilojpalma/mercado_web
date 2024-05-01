@@ -32,6 +32,7 @@ const nodeModulesPath = path.join(fileURLToPath(import.meta.url), '..', '..', 'n
 app.use('/css', express.static(path.join(nodeModulesPath, 'bootstrap/dist/css')));
 app.use('/js', express.static(path.join(nodeModulesPath, 'bootstrap/dist/js')));
 app.use('/js', express.static(path.join(nodeModulesPath, 'jquery/dist')));
+app.use('/font', express.static(path.join(nodeModulesPath, 'bootstrap-icons/font')));
 
 // Configuración de archivos estáticos 
 app.use('/css', express.static(path.join(__dirname, '/public/css')));
@@ -44,10 +45,15 @@ app.use('/img', express.static(path.join(__dirname, '/public/img')));
 console.log(fileURLToPath(import.meta.url))
 
 app.get('/', (req, res) => {
-    res.render("home",
-    {
-        title: "Home",
-    })
+    const product = [
+        { name: 'Banana', img: 'banana.png', price: '3.500', desc: 'Dulce y nutritiva, alto en proteinas ideal para un snack saludable. '},
+        { name: 'Cebollas', img: 'cebollas.png', price: '2.300', desc: 'Añade sabor y aroma a tus platos, perfecta para guisos y sofritos.'},
+        { name: 'Lechuga', img: 'lechuga.png', price: '1.500', desc: 'Verde crujiente y deliciosa, la base perfecta para tus ensaladas y sándwiches.'},
+        { name: 'Papas', img: 'papas.png', price: '5.600', desc: 'Versátil y reconfortante, un acompañamiento ideal para cualquier plato.'},
+        { name: 'Pimenton', img: 'pimenton.png', price: '1.100', desc: 'Colorido y sabroso, una explosión de sabor en tus ensaladas y asados.'},
+        { name: 'Tomate', img: 'tomate.png', price: '3.000', desc: 'Jugoso y sabroso, un ingrediente imprescindible en la cocina mediterránea.'}
+    ]
+    res.render('dashboard', { product });
 });
 
 app.listen(PORT, () => {

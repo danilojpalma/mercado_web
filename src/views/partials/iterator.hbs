@@ -1,0 +1,7 @@
+<h1 class="text-center mb-5 mt-5">Bienvenidos al Mercado Web, seleccione sus productos</h1>
+
+<div class="products d-flex flex-row flex-wrap gap-5">
+    {{#each product}}
+        {{> product name=name img=img price=price}}
+    {{/each}}
+</div>
